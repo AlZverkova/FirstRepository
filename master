@@ -1,0 +1,13 @@
+include "списки.inc"
+domains
+list_char=char*
+predicates
+nondeterm indexof(char,integer,list_char)
+clauses
+indexof(A,1,[A|_]).
+indexof(_,-1,[]).
+indexof(A,D,[_|C]):- indexof(A,B,C), B > -1, D = B+1.
+indexof(A,D,[_|C]):- indexof(A,B,C), B = -1, D = B.
+goal
+indexof(50,X,[10,20,30,40,50,60,70]),
+write("Index:",X),nl.
